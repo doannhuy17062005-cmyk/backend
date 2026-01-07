@@ -1,32 +1,15 @@
-# ===============================
-# BUILD STAGE
-# ===============================
-FROM eclipse-temurin:17-jdk AS build
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
 # Copy toàn bộ source
 COPY . .
 
-# Cấp quyền cho Maven Wrapper
-RUN chmod +x mvnw
+# Build bằng Maven system (vì bạn đã cài mvn)
+RUN mvn clean package -DskipTests
 
-# Build Spring Boot (skip test)
-RUN ./mvnw clean package -DskipTests
-
-
-# ===============================
-# RUN STAGE
-# ===============================
-FROM eclipse-temurin:17-jre
-
-WORKDIR /app
-
-# Copy file jar đã build
-COPY --from=build /app/target/*.jar app.jar
-
-# Port Spring Boot (đổi nếu app.properties khác)
+# Render dùng port 8080
 EXPOSE 8081
 
-# Chạy ứng dụng
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Chạy Spring Boot
+CMD ["java", "-jar", "target/*.jar"]
