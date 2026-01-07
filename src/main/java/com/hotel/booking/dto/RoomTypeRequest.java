@@ -17,4 +17,5 @@ public class RoomTypeRequest {
     @NotNull(message = "Giá cơ bản không được để trống")
     @Positive(message = "Giá cơ bản phải lớn hơn 0")
     private BigDecimal basePrice;
+    
 }

@@ -25,5 +25,6 @@ public class RoomTypeDTO {
                 .description(roomType.getDescription())
                 .basePrice(roomType.getBasePrice())
                 .build();
+                
     }
 }

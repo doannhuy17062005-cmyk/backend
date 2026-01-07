@@ -26,4 +26,5 @@ public class RoomRequest {
     private Integer capacity;
     
     private String imageUrl;
+    
 }
