@@ -9,10 +9,10 @@ WORKDIR /app
 COPY . .
 
 # Cấp quyền cho Maven Wrapper
-RUN chmod +x mvn
+RUN chmod +x mvnw
 
-# Build Spring Boot (không chạy test)
-RUN mvn clean package -DskipTests
+# Build Spring Boot (skip test)
+RUN ./mvnw clean package -DskipTests
 
 
 # ===============================
@@ -25,7 +25,7 @@ WORKDIR /app
 # Copy file jar đã build
 COPY --from=build /app/target/*.jar app.jar
 
-# Port mặc định Spring Boot
+# Port Spring Boot (đổi nếu app.properties khác)
 EXPOSE 8081
 
 # Chạy ứng dụng
