@@ -9,7 +9,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Render dùng port 8080
-EXPOSE 8081
+EXPOSE 8080
 
 # Chạy Spring Boot
 CMD ["java", "-jar", "target/*.jar"]
